@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Text
 from db import Base
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -9,11 +10,10 @@ class User(Base):
     password = Column(String(100))
 
 
-class Reports(Base):
+class Report(Base):
     __tablename__ = "reports"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("user.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
     resume_text = Column(Text)
-    result = Column(Text)    
-
+    result = Column(Text)
