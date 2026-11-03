@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CareerPilot AI</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <div calss = "container">
+
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="/dashboard" class="logo">CareerPilot <span>AI</span></a>
 
             <nav>
-                <a href="/history">History</a>
                 <a href="/dashboard">Dashboard</a>
-                <a href="logout">Logout</a>
+                <a href="/history">History</a>
+                <a href="/logout">Logout</a>
             </nav>
         </div>
     </header>
-    <main class="container">
-        {% block content %} {% endblock %}
+
+    <main class="container main-content">
+        {% block content %}{% endblock %}
     </main>
-    <footer>@2026 CAREERPILOT AI</footer>
-    
+
+    <footer>
+        © 2026 CareerPilot AI. All rights reserved.
+    </footer>
+
 </body>
 </html>
