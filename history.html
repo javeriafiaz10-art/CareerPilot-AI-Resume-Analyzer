@@ -1,39 +1,26 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h3>Your History</h3>
+
+<section class="welcome-section">
+    <h2>Your Analysis History</h2>
+    <p>Review your previous resume analysis reports.</p>
+</section>
+
 {% for r in reports %}
-<div class="card">
-    <p><strong>Resume preview:</strong></p>
-    <p>{{ r.resume[:150] }}</p>
-    <hr>
-    <h3>Skills</h3>
-    <ul>
-        {% for s in result.get("skills, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-    <h3>Missing Skills</h3>
-    <ul>
-        {% for s in result.get("missing_skills, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-     <h3>Roadmap</h3>
-    <ul>
-        {% for s in result.get("Roadmap, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-      <h3>Interview Questions</h3>
-    <ul>
-        {% for s in result.get("interview_questions, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
+<div class="card history-card">
+
+    <h3>Resume Preview</h3>
+    <p>{{ r.resume_text[:150] }}...</p>
+
+    <h4>Analysis Result</h4>
+    <pre class="history-result">{{ r.result }}</pre>
 
 </div>
+{% else %}
+<div class="card">
+    <p>You haven't analyzed any resumes yet.</p>
+</div>
 {% endfor %}
-
-
 
 {% endblock %}
