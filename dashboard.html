@@ -1,50 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPilot AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-<h2>Welcome,{{user}}</h2>
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="/dashboard" class="logo">CareerPilot <span>AI</span></a>
 
-<div class="card">
-    <h3>Resume Analyser</h3>
-    <form method="Post" enctype="multipart/form-data">
-    <textarea name="resume" placeholder="Paste Your Resume(optional)"></textarea>
-    <p>OR Upload File</p>
-    <input type="file">
-    <input name="Role" placeholder="What do you want to become?(e.g Python developer)" required>
-    <button type="submit">Analyze</button>
-</form>
+            <nav>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/history">History</a>
+                <a href="/logout">Logout</a>
+            </nav>
+        </div>
+    </header>
 
-</div>
+    <main class="container main-content">
+        {% block content %}{% endblock %}
+    </main>
 
-{% if result %}
+    <footer>
+        © 2026 CareerPilot AI. All rights reserved.
+    </footer>
 
-<div class="red">
-        {% if result.error %}
-        <p style="color: red;">Error: {{result.error}}</p>
-        {% endif %}
-    <h3>Skills</h3>
-    <ul>
-        {% for s in result.get("skills, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-    <h3>Missing Skills</h3>
-    <ul>
-        {% for s in result.get("missing_skills, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-     <h3>Roadmap</h3>
-    <ul>
-        {% for s in result.get("Roadmap, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-      <h3>Interview Questions</h3>
-    <ul>
-        {% for s in result.get("interview_questions, []") %}
-        <li>{{s}}</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endif %}
-{% endblock %}
+</body>
+</html>
